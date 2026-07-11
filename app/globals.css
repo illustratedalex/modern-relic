@@ -16,3 +16,105 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
+
+.mr-price {
+  color: #b08d57;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.mr-product-preview {
+  min-height: 360px;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(135deg, rgba(176, 141, 87, 0.12), rgba(8, 8, 7, 0.8)),
+    radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.08), transparent 42%);
+}
+
+.mr-product-preview-inner {
+  max-width: 420px;
+  text-align: center;
+}
+
+.mr-product-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.mr-product-image {
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background:
+    linear-gradient(135deg, rgba(176, 141, 87, 0.14), rgba(8, 8, 7, 0.8)),
+    radial-gradient(circle at 24% 15%, rgba(255, 255, 255, 0.08), transparent 42%);
+}
+
+.mr-list {
+  margin: 0 0 20px;
+  padding-left: 20px;
+  color: #b8aa92;
+}
+
+.mr-button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0 10px;
+}
+
+.mr-bulk-callout {
+  border: 1px solid rgba(232, 225, 212, 0.16);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 14px 16px;
+  color: #e8e1d4;
+}
+
+.mr-checkbox {
+  display: flex !important;
+  gap: 10px;
+  align-items: flex-start;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  font-size: 0.95rem !important;
+  color: #b8aa92 !important;
+}
+
+.mr-checkbox input {
+  margin-top: 4px;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+.mr-form-error {
+  margin: 6px 0 0;
+  padding: 10px 12px;
+  border: 1px solid #8f3d3d;
+  background: rgba(143, 61, 61, 0.18);
+  color: #f4c0c0;
+  font-size: 0.95rem;
+}
+
+.mr-reference {
+  font-family: var(--font-modern-relic-cinzel), serif;
+  letter-spacing: 0.12em;
+  color: #b08d57;
+  font-size: 1.2rem;
+}
+
+.mr-checkout-note {
+  margin-top: 14px;
+  color: #d8cfbf;
+}
+
+@media (max-width: 900px) {
+  .mr-product-layout {
+    grid-template-columns: 1fr;
+  }
+}
