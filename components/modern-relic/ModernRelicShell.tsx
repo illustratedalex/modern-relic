@@ -75,6 +75,9 @@ export function ModernRelicShell({ children, socialLinks }: ModernRelicShellProp
           --line: rgba(232, 225, 212, 0.16);
           --shadow: rgba(0, 0, 0, 0.45);
           margin: 0;
+          padding: 0;
+          border: 0;
+          width: 100%;
           background: var(--black);
           color: var(--bone);
           font-family: var(--font-modern-relic-montserrat), Arial, sans-serif;
