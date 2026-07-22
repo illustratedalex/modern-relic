@@ -360,6 +360,50 @@ export function ModernRelicShell({ children, socialLinks }: ModernRelicShellProp
           font-size: clamp(3.8rem, 8.8vw, 7.2rem);
         }
 
+        .shop-page-hero {
+          min-height: 34vh;
+          padding: 72px 5vw 56px;
+        }
+
+        .shop-page-hero h1 {
+          font-size: clamp(2.8rem, 6vw, 5rem);
+        }
+
+        .shop-section {
+          padding-top: 58px;
+          padding-bottom: 58px;
+        }
+
+        .shop-feature h2 {
+          font-size: clamp(1.8rem, 3.5vw, 3rem);
+        }
+
+        .shop-feature p {
+          font-size: 1rem;
+        }
+
+        .shop-feature .mr-price {
+          font-size: 0.92rem;
+        }
+
+        .shop-feature .btn {
+          padding: 12px 20px;
+          font-size: 0.72rem;
+        }
+
+        .shop-info-cards {
+          gap: 16px;
+        }
+
+        .shop-info-cards .card {
+          min-height: 175px;
+          padding: 22px;
+        }
+
+        .shop-info-cards h3 {
+          font-size: 1.25rem;
+        }
+
         .about-hero {
           background: linear-gradient(90deg, rgba(8, 8, 7, 0.9), rgba(8, 8, 7, 0.58)),
             url('/images/modern-relic/about-workshop.png') center / cover no-repeat;

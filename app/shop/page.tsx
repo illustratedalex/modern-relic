@@ -15,7 +15,7 @@ export default function ModernRelicShopPage() {
 
   return (
     <ModernRelicShell socialLinks={content.socialLinks}>
-      <section className="page-hero">
+      <section className="page-hero shop-page-hero">
         <div>
           <p className="eyebrow">Shop</p>
           <h1>Modern Relic Store</h1>
@@ -23,7 +23,7 @@ export default function ModernRelicShopPage() {
         </div>
       </section>
 
-      <section className="section intro-grid">
+      <section className="section intro-grid shop-section shop-feature">
         <div>
           <p className="eyebrow">Featured Product</p>
           <h2>{customTumblerProduct.title}</h2>
@@ -43,7 +43,7 @@ export default function ModernRelicShopPage() {
         </div>
       </section>
 
-      <section className="section cards-section">
+      <section className="section cards-section shop-section shop-info-cards">
         <div className="card">
           <h3>Custom Printing</h3>
           <p>Sublimation and UV print options for personal, business, and event-ready designs.</p>
