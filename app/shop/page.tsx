@@ -7,7 +7,7 @@ import { customTumblerProduct } from "@/data/deadsignal/store";
 export const metadata: Metadata = modernRelicMetadata(
   "Shop | Modern Relic Custom Products",
   "Explore Modern Relic custom products and start with the Custom Printed 20 oz Tumbler.",
-  "/shop.html",
+  "/shop",
 );
 
 export default function ModernRelicShopPage() {
