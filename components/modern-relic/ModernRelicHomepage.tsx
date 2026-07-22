@@ -81,7 +81,7 @@ export function ModernRelicHomepage({ content }: ModernRelicHomepageProps) {
         <div>
           <p className="eyebrow">Products</p>
           <h2>The shop lives next door.</h2>
-          <p>Products, stickers, prints, apparel, and custom creations are handled through the Square store at shop.modernrelic.com.</p>
+          <p>Products, stickers, prints, apparel, and custom creations are handled through the Square store at /shop.</p>
         </div>
         <a className="big-link" href="/shop">Shop Modern Relic →</a>
       </section>
