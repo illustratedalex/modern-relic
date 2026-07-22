@@ -15,7 +15,7 @@ export default function ModernRelicShopPage() {
 
   return (
     <ModernRelicShell socialLinks={content.socialLinks}>
-      <section className="page-hero shop-page-hero">
+      <section className="page-hero shop-compact-hero">
         <div>
           <p className="eyebrow">Shop</p>
           <h1>Modern Relic Store</h1>
@@ -23,27 +23,27 @@ export default function ModernRelicShopPage() {
         </div>
       </section>
 
-      <section className="section intro-grid shop-section shop-feature">
-        <div>
-          <p className="eyebrow">Featured Product</p>
-          <h2>{customTumblerProduct.title}</h2>
-          <p className="mr-price">Starting at {customTumblerProduct.startingPrice}</p>
-          <p>{customTumblerProduct.shortDescription}</p>
-          <Link className="btn primary" href="/shop/custom-tumbler">
-            Customize This Tumbler
-          </Link>
-        </div>
-
-        <div className="card mr-product-preview" aria-label="Custom tumbler product preview placeholder">
+      <section className="section shop-feature-section">
+        <div className="shop-feature-media card" aria-label="Custom tumbler product preview placeholder">
           <div className="mr-product-preview-inner">
             <p className="eyebrow">Preview</p>
             <h3>20 oz Stainless Tumbler</h3>
             <p>Placeholder image area. Final product photography will be added in the next step.</p>
           </div>
         </div>
+
+        <div className="shop-feature-copy">
+          <p className="eyebrow">Featured Product</p>
+          <h2>{customTumblerProduct.title}</h2>
+          <p className="shop-feature-price">Starting at {customTumblerProduct.startingPrice}</p>
+          <p>{customTumblerProduct.shortDescription}</p>
+          <Link className="btn primary" href="/shop/custom-tumbler">
+            Customize This Tumbler
+          </Link>
+        </div>
       </section>
 
-      <section className="section cards-section shop-section shop-info-cards">
+      <section className="section cards-section shop-info-cards">
         <div className="card">
           <h3>Custom Printing</h3>
           <p>Sublimation and UV print options for personal, business, and event-ready designs.</p>

@@ -360,59 +360,127 @@ export function ModernRelicShell({ children, socialLinks }: ModernRelicShellProp
           font-size: clamp(3.8rem, 8.8vw, 7.2rem);
         }
 
-        .product-page-hero {
-          min-height: 30vh;
-          padding: 64px 5vw 48px;
+        .shop-compact-hero {
+          min-height: 260px;
+          padding: 58px 5vw 48px;
         }
 
-        .product-page-hero h1 {
-          max-width: 980px;
-          font-size: clamp(2.7rem, 5.5vw, 5.4rem);
+        .shop-compact-hero h1 {
+          max-width: 900px;
+          margin-left: auto;
+          margin-right: auto;
+          font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+        }
+
+        .shop-compact-hero p {
+          max-width: 720px;
           margin-left: auto;
           margin-right: auto;
         }
 
-        .product-hero-price {
-          color: var(--brass) !important;
-          font-size: 1.2rem !important;
-          font-weight: 700;
-        }
-
-        .product-detail-section {
+        .shop-feature-section {
           display: grid;
-          grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-          gap: 46px;
-          align-items: start;
-          padding-top: 62px;
-          padding-bottom: 62px;
+          grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+          gap: 42px;
+          align-items: center;
+          padding-top: 54px;
+          padding-bottom: 54px;
         }
 
-        .product-media {
-          min-height: 480px;
+        .shop-feature-media {
+          min-height: 360px;
           display: grid;
           place-items: center;
-          padding: 28px;
-          background: linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015));
+          padding: 24px;
         }
 
-        .product-media img {
+        .shop-feature-copy h2 {
+          font-size: clamp(2rem, 3.4vw, 3.25rem);
+        }
+
+        .shop-feature-price {
+          color: var(--brass);
+          font-size: 1.35rem;
+          font-weight: 800;
+          margin: 8px 0 16px;
+        }
+
+        .shop-info-cards {
+          gap: 14px;
+          padding-top: 34px;
+          padding-bottom: 54px;
+        }
+
+        .shop-info-cards .card {
+          min-height: 160px;
+          padding: 20px;
+        }
+
+        .shop-info-cards h3 {
+          font-size: 1.15rem;
+        }
+
+        .product-compact-banner {
+          min-height: 200px;
+          display: grid;
+          place-items: center;
+          text-align: center;
+          padding: 46px 5vw 38px;
+          background: linear-gradient(90deg, rgba(8, 8, 7, 0.92), rgba(8, 8, 7, 0.66)),
+            url('/images/modern-relic/hero-workshop.png') center / cover no-repeat;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .product-banner-inner {
+          max-width: 1040px;
+        }
+
+        .product-compact-banner h1 {
+          font-size: clamp(2.45rem, 5vw, 4.6rem);
+          margin-bottom: 10px;
+        }
+
+        .product-banner-price {
+          color: var(--brass);
+          font-size: 1.2rem;
+          font-weight: 800;
+          margin: 0;
+        }
+
+        .product-commerce-layout {
+          display: grid;
+          grid-template-columns: minmax(0, 1.1fr) minmax(330px, 0.9fr);
+          gap: 48px;
+          align-items: start;
+          padding-top: 52px;
+          padding-bottom: 58px;
+        }
+
+        .product-gallery {
+          min-width: 0;
+        }
+
+        .product-main-image {
+          min-height: 430px;
+          display: grid;
+          place-items: center;
+          padding: 26px;
+        }
+
+        .product-main-image img {
           width: 100%;
           height: auto;
-          max-height: 560px;
+          max-height: 520px;
           object-fit: contain;
         }
 
-        .product-purchase-panel {
+        .product-buy-panel {
           position: sticky;
-          top: 110px;
-          background: linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015));
-          border: 1px solid var(--line);
-          box-shadow: 0 25px 70px var(--shadow);
-          padding: 28px;
+          top: 105px;
         }
 
-        .product-purchase-panel h2 {
-          font-size: clamp(2rem, 3.8vw, 3.5rem);
+        .product-buy-panel h2 {
+          font-size: clamp(2rem, 3.6vw, 3.4rem);
         }
 
         .product-price {
@@ -422,59 +490,17 @@ export function ModernRelicShell({ children, socialLinks }: ModernRelicShellProp
           margin: 8px 0 18px;
         }
 
-        .product-purchase-panel p {
+        .product-description {
           color: var(--muted);
           font-size: 1rem;
         }
 
-        .product-purchase-panel .btn {
-          margin: 18px 0 0;
-          padding: 12px 20px;
-          font-size: 0.74rem;
+        .product-customize-button {
+          margin: 20px 0 0;
         }
 
-        .shop-page-hero {
-          min-height: 34vh;
-          padding: 72px 5vw 56px;
-        }
-
-        .shop-page-hero h1 {
-          font-size: clamp(2.8rem, 6vw, 5rem);
-        }
-
-        .shop-section {
-          padding-top: 58px;
-          padding-bottom: 58px;
-        }
-
-        .shop-feature h2 {
-          font-size: clamp(1.8rem, 3.5vw, 3rem);
-        }
-
-        .shop-feature p {
-          font-size: 1rem;
-        }
-
-        .shop-feature .mr-price {
-          font-size: 0.92rem;
-        }
-
-        .shop-feature .btn {
-          padding: 12px 20px;
-          font-size: 0.72rem;
-        }
-
-        .shop-info-cards {
-          gap: 16px;
-        }
-
-        .shop-info-cards .card {
-          min-height: 175px;
-          padding: 22px;
-        }
-
-        .shop-info-cards h3 {
-          font-size: 1.25rem;
+        #customize {
+          scroll-margin-top: 110px;
         }
 
         .about-hero {
@@ -781,27 +807,49 @@ export function ModernRelicShell({ children, socialLinks }: ModernRelicShellProp
             padding-top: 90px;
           }
 
-          .product-page-hero {
+          .shop-compact-hero {
             min-height: auto;
-            padding: 54px 5vw 42px;
+            padding: 46px 5vw 38px;
           }
 
-          .product-page-hero h1 {
-            font-size: clamp(2.35rem, 11vw, 4rem);
+          .shop-compact-hero h1 {
+            font-size: clamp(2.35rem, 10vw, 3.8rem);
           }
 
-          .product-detail-section {
+          .shop-feature-section,
+          .product-commerce-layout {
             grid-template-columns: 1fr;
             gap: 28px;
-            padding-top: 42px;
+          }
+
+          .shop-feature-section {
+            padding-top: 38px;
             padding-bottom: 42px;
           }
 
-          .product-media {
-            min-height: 340px;
+          .shop-feature-media {
+            min-height: 300px;
           }
 
-          .product-purchase-panel {
+          .product-compact-banner {
+            min-height: auto;
+            padding: 42px 5vw 34px;
+          }
+
+          .product-compact-banner h1 {
+            font-size: clamp(2.2rem, 10vw, 3.7rem);
+          }
+
+          .product-commerce-layout {
+            padding-top: 38px;
+            padding-bottom: 44px;
+          }
+
+          .product-main-image {
+            min-height: 320px;
+          }
+
+          .product-buy-panel {
             position: static;
           }
 

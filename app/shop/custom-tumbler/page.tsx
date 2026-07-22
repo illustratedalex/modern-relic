@@ -17,28 +17,30 @@ export default function ModernRelicCustomTumblerPage() {
 
   return (
     <ModernRelicShell socialLinks={content.socialLinks}>
-      <section className="page-hero product-page-hero">
-        <div>
+      <section className="product-compact-banner">
+        <div className="product-banner-inner">
           <p className="eyebrow">Shop / Product</p>
           <h1>{customTumblerProduct.title}</h1>
-          <p className="product-hero-price">Starting at {customTumblerProduct.startingPrice}</p>
+          <p className="product-banner-price">Starting at {customTumblerProduct.startingPrice}</p>
         </div>
       </section>
 
-      <section className="section product-detail-section">
-        <div className="product-media card" aria-label="Custom tumbler product placeholder">
-          <div>
-            <p className="eyebrow">Product Preview</p>
-            <h3>20 oz Stainless Tumbler</h3>
-            <p>Image placeholder until final product photography is ready.</p>
+      <section className="section product-commerce-layout">
+        <div className="product-gallery">
+          <div className="product-main-image card" aria-label="Custom tumbler product placeholder">
+            <div>
+              <p className="eyebrow">Product Preview</p>
+              <h3>20 oz Stainless Tumbler</h3>
+              <p>Image placeholder until final product photography is ready.</p>
+            </div>
           </div>
         </div>
 
-        <article className="product-purchase-panel">
-          <p className="eyebrow">Custom Made</p>
+        <article className="product-buy-panel">
+          <p className="eyebrow">Made to Order</p>
           <h2>{customTumblerProduct.title}</h2>
           <p className="product-price">Starting at {customTumblerProduct.startingPrice}</p>
-          <p>{customTumblerProduct.shortDescription}</p>
+          <p className="product-description">{customTumblerProduct.shortDescription}</p>
 
           <h3>Customization Options</h3>
           <ul className="mr-list">
@@ -48,7 +50,7 @@ export default function ModernRelicCustomTumblerPage() {
           </ul>
 
           <div className="mr-button-row">
-            <a className="btn primary" href="#customize">
+            <a className="btn primary product-customize-button" href="#customize">
               Customize Yours
             </a>
             {checkoutUrl ? (
