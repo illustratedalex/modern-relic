@@ -17,16 +17,16 @@ export default function ModernRelicCustomTumblerPage() {
 
   return (
     <ModernRelicShell socialLinks={content.socialLinks}>
-      <section className="page-hero">
+      <section className="page-hero product-page-hero">
         <div>
           <p className="eyebrow">Shop / Product</p>
           <h1>{customTumblerProduct.title}</h1>
-          <p>Starting at {customTumblerProduct.startingPrice}</p>
+          <p className="product-hero-price">Starting at {customTumblerProduct.startingPrice}</p>
         </div>
       </section>
 
-      <section className="section mr-product-layout">
-        <div className="card mr-product-image" aria-label="Custom tumbler product placeholder">
+      <section className="section product-detail-section">
+        <div className="product-media card" aria-label="Custom tumbler product placeholder">
           <div>
             <p className="eyebrow">Product Preview</p>
             <h3>20 oz Stainless Tumbler</h3>
@@ -34,38 +34,22 @@ export default function ModernRelicCustomTumblerPage() {
           </div>
         </div>
 
-        <article className="card">
+        <article className="product-purchase-panel">
+          <p className="eyebrow">Custom Made</p>
+          <h2>{customTumblerProduct.title}</h2>
+          <p className="product-price">Starting at {customTumblerProduct.startingPrice}</p>
           <p>{customTumblerProduct.shortDescription}</p>
 
-          <h3>Printing Options</h3>
-          <ul className="mr-list">
-            <li>Sublimation printing for vibrant, full-wrap designs.</li>
-            <li>UV printing for sharp logos and high-detail graphics.</li>
-          </ul>
-
-          <h3>Personalization Options</h3>
+          <h3>Customization Options</h3>
           <ul className="mr-list">
             {customTumblerProduct.personalizationOptions.map((option) => (
               <li key={option}>{option}</li>
             ))}
           </ul>
 
-          <h3>Proof Approval</h3>
-          <p>
-            Before production, you will receive a digital proof to review. We only print after your approval so your
-            tumbler matches expectations.
-          </p>
-
-          <h3>Production &amp; Care</h3>
-          <ul className="mr-list">
-            <li>Typical production: 5-10 business days after proof approval.</li>
-            <li>Hand-wash recommended to preserve print quality.</li>
-            <li>Not microwave safe (stainless steel tumbler).</li>
-          </ul>
-
           <div className="mr-button-row">
-            <a className="btn primary" href="#artwork-upload">
-              Upload Artwork &amp; Customize
+            <a className="btn primary" href="#customize">
+              Customize Yours
             </a>
             {checkoutUrl ? (
               <a className="btn secondary" href={checkoutUrl}>
@@ -85,7 +69,7 @@ export default function ModernRelicCustomTumblerPage() {
         </article>
       </section>
 
-      <section className="section" id="artwork-upload">
+      <section className="section" id="customize">
         <div className="contact-card">
           <p className="eyebrow">Artwork Upload</p>
           <h2>Customize Your Tumbler</h2>

@@ -360,6 +360,79 @@ export function ModernRelicShell({ children, socialLinks }: ModernRelicShellProp
           font-size: clamp(3.8rem, 8.8vw, 7.2rem);
         }
 
+        .product-page-hero {
+          min-height: 30vh;
+          padding: 64px 5vw 48px;
+        }
+
+        .product-page-hero h1 {
+          max-width: 980px;
+          font-size: clamp(2.7rem, 5.5vw, 5.4rem);
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .product-hero-price {
+          color: var(--brass) !important;
+          font-size: 1.2rem !important;
+          font-weight: 700;
+        }
+
+        .product-detail-section {
+          display: grid;
+          grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+          gap: 46px;
+          align-items: start;
+          padding-top: 62px;
+          padding-bottom: 62px;
+        }
+
+        .product-media {
+          min-height: 480px;
+          display: grid;
+          place-items: center;
+          padding: 28px;
+          background: linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015));
+        }
+
+        .product-media img {
+          width: 100%;
+          height: auto;
+          max-height: 560px;
+          object-fit: contain;
+        }
+
+        .product-purchase-panel {
+          position: sticky;
+          top: 110px;
+          background: linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015));
+          border: 1px solid var(--line);
+          box-shadow: 0 25px 70px var(--shadow);
+          padding: 28px;
+        }
+
+        .product-purchase-panel h2 {
+          font-size: clamp(2rem, 3.8vw, 3.5rem);
+        }
+
+        .product-price {
+          color: var(--brass);
+          font-size: 1.45rem;
+          font-weight: 800;
+          margin: 8px 0 18px;
+        }
+
+        .product-purchase-panel p {
+          color: var(--muted);
+          font-size: 1rem;
+        }
+
+        .product-purchase-panel .btn {
+          margin: 18px 0 0;
+          padding: 12px 20px;
+          font-size: 0.74rem;
+        }
+
         .shop-page-hero {
           min-height: 34vh;
           padding: 72px 5vw 56px;
@@ -706,6 +779,30 @@ export function ModernRelicShell({ children, socialLinks }: ModernRelicShellProp
           .hero {
             min-height: 78vh;
             padding-top: 90px;
+          }
+
+          .product-page-hero {
+            min-height: auto;
+            padding: 54px 5vw 42px;
+          }
+
+          .product-page-hero h1 {
+            font-size: clamp(2.35rem, 11vw, 4rem);
+          }
+
+          .product-detail-section {
+            grid-template-columns: 1fr;
+            gap: 28px;
+            padding-top: 42px;
+            padding-bottom: 42px;
+          }
+
+          .product-media {
+            min-height: 340px;
+          }
+
+          .product-purchase-panel {
+            position: static;
           }
 
           .ticker {
