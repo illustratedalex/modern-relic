@@ -1,0 +1,21 @@
+import { checkPrintfulConnection } from "@/lib/printful";
+
+export const dynamic = "force-dynamic";
+export const maxDuration = 30;
+
+// Preview diagnostics only; never expose this route on the production site.
+export async function GET() {
+  if (process.env.VERCEL_ENV !== "preview") {
+    return Response.json({ error: "Not found" }, { status: 404 });
+  }
+  const connection = await checkPrintfulConnection();
+  return Response.json({
+    ...connection,
+    environment: "preview",
+    fulfillmentEnabled: false,
+    checkedAt: new Date().toISOString(),
+  }, {
+    status: connection.connected ? 200 : 503,
+    headers: { "Cache-Control": "private, no-store", "X-Robots-Tag": "noindex, nofollow" },
+  });
+}
