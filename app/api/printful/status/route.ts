@@ -12,7 +12,7 @@ export async function GET() {
   const catalog = connection.connected ? await getPrintfulCatalog() : null;
   return Response.json({
     ...connection,
-    products: catalog?.products.map(({id, name, variants}) => ({id, name, variants})) ?? [],
+    products: catalog?.products.map(({id, name, variants, fileChecks}) => ({id, name, variants, fileChecks})) ?? [],
     environment: "preview",
     fulfillmentEnabled: false,
     checkedAt: new Date().toISOString(),

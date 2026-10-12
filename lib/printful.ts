@@ -6,7 +6,7 @@ type ApiResponse = {
   paging?: { total?: number };
 };
 
-export type PrintfulProduct = { id: number; name: string; externalId: string; image: string | null; variants: { id: number; size: string; priceCents: number }[] };
+export type PrintfulProduct = { id: number; name: string; externalId: string; image: string | null; variants: { id: number; size: string; priceCents: number }[]; fileChecks: { type: string; status: string; width?: number; height?: number; dpi?: number; position?: unknown }[] };
 export type PrintfulCatalog = { ready: boolean; products: PrintfulProduct[] };
 
 // Only public product fields leave the server. Checkout is a separate integration.
@@ -44,7 +44,7 @@ export async function getPrintfulCatalog(): Promise<PrintfulCatalog> {
       ).map((v: {id:number;external_id:string;retail_price:string}) => ({
         id: v.id, size: v.external_id.split("-").at(-1) ?? "", priceCents: Math.round(Number(v.retail_price) * 100),
       }));
-      return { id: product.id, name: product.name, externalId: product.external_id, image, variants };
+      return { id: product.id, name: product.name, externalId: product.external_id, image, variants, fileChecks: detail.sync_variants[0]?.files?.map((f: {type:string;status:string;width?:number;height?:number;dpi?:number;position?:unknown}) => ({type:f.type,status:f.status,width:f.width,height:f.height,dpi:f.dpi,position:f.position})) ?? [] };
     }))).filter((p): p is PrintfulProduct => p !== null);
     return { ready: true, products };
   } catch {
