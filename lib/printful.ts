@@ -41,6 +41,7 @@ export async function getPrintfulCatalog(): Promise<PrintfulCatalog> {
       const variants = detail.sync_variants.filter((v: { synced: boolean; currency: string; retail_price: string; files?: {type:string;status:string}[] }) =>
         v.synced === true && v.currency === "USD" && Number(v.retail_price) > 0
         && v.files?.some(f => (f.type === "front" || f.type === "default") && f.status === "ok")
+        && v.files?.some(f => f.type === "label_inside" && f.status === "ok")
       ).map((v: {id:number;external_id:string;retail_price:string}) => ({
         id: v.id, size: v.external_id.split("-").at(-1) ?? "", priceCents: Math.round(Number(v.retail_price) * 100),
       }));

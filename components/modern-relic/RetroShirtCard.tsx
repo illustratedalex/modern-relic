@@ -12,7 +12,7 @@ export function RetroShirtCard({ product }: { product: PrintfulProduct }) {
     {product.image && <img src={product.image} alt={`Front design artwork for ${design?.title ?? product.name}`} width="1086" height="1448" loading="lazy" style={{ width: "100%", height: "auto", objectFit: "contain" }} />}
     <h2>{design?.title ?? product.name}</h2>
     <p>{design?.description}</p>
-    <p>Bella + Canvas 3001 · Black · Front print</p>
+    <p>Bella + Canvas 3001 · Black · Front print · Modern Relic inside label</p>
     {product.variants.length > 0 ? <>
       <label htmlFor={`size-${product.id}`}>Size</label>{" "}
       <select id={`size-${product.id}`} value={variantId} onChange={e => setVariantId(Number(e.target.value))} style={{ padding: "0.55rem", background: "#181512", color: "#e8e1d4", border: "1px solid #b08d57", borderRadius: "3px" }}>
