@@ -14,7 +14,7 @@ export function modernRelicMetadata(title: string, description: string, canonica
   const canonicalUrl = `https://modernrelic.com${canonicalPath}`;
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: {
       canonical: canonicalUrl,
