@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getModernRelicContentOrThrow, modernRelicMetadata } from "@/app/_content";
+import { coffeeDesigns } from "@/data/deadsignal/retro-products";
 import { ModernRelicShell } from "@/components/modern-relic/ModernRelicShell";
 
 export const metadata: Metadata = modernRelicMetadata(
@@ -18,6 +19,11 @@ export default function ModernRelicProjectsPage() {
     <section className="page-hero"><div><p className="eyebrow">Collections · In Development</p><h1>Retro spirit. Everyday goods.</h1><p>{content.modernRelicPages.projectsIntroText}</p></div></section>
     <section className="section project-list">{collections.map((collection, index) => <article className="project-card" key={collection.name}>
       <span>0{index + 1}</span><h2>{collection.name}</h2><p>{collection.text}</p>
+    </article>)}</section>
+    <section className="section intro-grid"><div><p className="eyebrow">Coffee Collection · Designs In Development</p><h2>Old soul. Fresh brew.</h2></div><div className="copy"><p>Three original mug designs with the same worn vintage character as our clothing. Mug products are coming next.</p></div></section>
+    <section className="section cards-section">{coffeeDesigns.map(design => <article className="card" key={design.slug}>
+      <img src={`/images/modern-relic/products/${design.slug}.png`} alt={`${design.title} mug design artwork`} width="1448" height="1086" loading="lazy" style={{width:"100%",height:"auto"}} />
+      <h2>{design.title}</h2><p>{design.description}</p><p>Mug design preview · Not available to order yet.</p>
     </article>)}</section>
     <section className="section split"><div><p className="eyebrow">The Shop</p><h2>More than a shirt.</h2><p>Clothing, mugs, prints, accessories, and gifts will appear as each design is ready for launch.</p></div><a className="big-link" href="/shop">Visit The Shop →</a></section>
   </ModernRelicShell>;

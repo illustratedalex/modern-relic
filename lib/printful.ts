@@ -6,7 +6,7 @@ type ApiResponse = {
   paging?: { total?: number };
 };
 
-export type PrintfulProduct = { id: number; name: string; image: string | null };
+export type PrintfulProduct = { id: number; name: string; externalId: string; image: string | null; variants: { id: number; size: string; priceCents: number }[] };
 export type PrintfulCatalog = { ready: boolean; products: PrintfulProduct[] };
 
 // Only public product fields leave the server. Checkout is a separate integration.
@@ -25,16 +25,27 @@ export async function getPrintfulCatalog(): Promise<PrintfulCatalog> {
     if (!response.ok) return { ready: false, products: [] };
     const body = await response.json();
     if (!Array.isArray(body.result)) return { ready: false, products: [] };
-    const products: PrintfulProduct[] = [];
-    for (const product of body.result) {
-      if (!Number.isSafeInteger(product.id) || typeof product.name !== "string") continue;
+    const products = (await Promise.all(body.result.filter((p: {external_id?: string}) =>
+      ["mr-raised-on-static-tee-v1", "mr-original-parts-tee-v1", "mr-little-rust-tee-v1"].includes(p.external_id ?? "")
+    ).map(async (product: { id: number; name: string; external_id: string; thumbnail_url?: string }) => {
+      if (!Number.isSafeInteger(product.id) || typeof product.name !== "string") return null;
+      const detailResponse = await fetch(`https://api.printful.com/store/products/${product.id}`, {
+        headers: { Authorization: `Bearer ${process.env.PRINTFUL_ACCESS_TOKEN!.trim()}`, "X-PF-Store-Id": String(connection.store.id) },
+        cache: "no-store", redirect: "error", signal: AbortSignal.timeout(10000),
+      });
+      if (!detailResponse.ok) return null;
+      const detail = (await detailResponse.json()).result;
+      if (!Array.isArray(detail?.sync_variants)) return null;
       let image: string | null = null;
-      try {
-        const url = new URL(product.thumbnail_url);
-        if (url.protocol === "https:") image = url.href;
-      } catch { /* Missing preview image is fine. */ }
-      products.push({ id: product.id, name: product.name, image });
-    }
+      try { const url = new URL(product.thumbnail_url ?? ""); if (url.protocol === "https:") image = url.href; } catch { /* optional image */ }
+      const variants = detail.sync_variants.filter((v: { synced: boolean; currency: string; retail_price: string; files?: {type:string;status:string}[] }) =>
+        v.synced === true && v.currency === "USD" && Number(v.retail_price) > 0
+        && v.files?.some(f => f.type === "front" && f.status === "ok")
+      ).map((v: {id:number;external_id:string;retail_price:string}) => ({
+        id: v.id, size: v.external_id.split("-").at(-1) ?? "", priceCents: Math.round(Number(v.retail_price) * 100),
+      }));
+      return { id: product.id, name: product.name, externalId: product.external_id, image, variants };
+    }))).filter((p): p is PrintfulProduct => p !== null);
     return { ready: true, products };
   } catch {
     return { ready: false, products: [] };

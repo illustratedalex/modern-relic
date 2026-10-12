@@ -1,4 +1,4 @@
-import { checkPrintfulConnection } from "@/lib/printful";
+import { checkPrintfulConnection, getPrintfulCatalog } from "@/lib/printful";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 30;
@@ -9,8 +9,10 @@ export async function GET() {
     return Response.json({ error: "Not found" }, { status: 404 });
   }
   const connection = await checkPrintfulConnection();
+  const catalog = connection.connected ? await getPrintfulCatalog() : null;
   return Response.json({
     ...connection,
+    products: catalog?.products.map(({id, name, variants}) => ({id, name, variants})) ?? [],
     environment: "preview",
     fulfillmentEnabled: false,
     checkedAt: new Date().toISOString(),

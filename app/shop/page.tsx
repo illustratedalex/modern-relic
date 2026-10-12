@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { getModernRelicContentOrThrow, modernRelicMetadata } from "@/app/_content";
 import { ModernRelicShell } from "@/components/modern-relic/ModernRelicShell";
 import { getPrintfulCatalog } from "@/lib/printful";
+import { unstable_cache } from "next/cache";
+import { RetroShirtCard } from "@/components/modern-relic/RetroShirtCard";
+const getCachedCatalog = unstable_cache(getPrintfulCatalog, ["modern-relic-catalog-v2"], { revalidate: 60 });
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 45;
@@ -13,7 +16,7 @@ export const metadata: Metadata = modernRelicMetadata(
 
 export default async function ModernRelicShopPage() {
   const content = getModernRelicContentOrThrow();
-  const catalog = await getPrintfulCatalog();
+  const catalog = await getCachedCatalog();
   return <ModernRelicShell socialLinks={content.socialLinks}>
     <section className="page-hero shop-compact-hero"><div>
       <p className="eyebrow">The Modern Relic Shop</p>
@@ -21,10 +24,7 @@ export default async function ModernRelicShopPage() {
       <p>Retro clothing, mugs, prints, accessories, and gifts for analog souls of every generation.</p>
     </div></section>
     {catalog.products.length > 0 ? <section className="section cards-section">
-      {catalog.products.map(product => <article className="card" key={product.id}>
-        {product.image && <img src={product.image} alt={product.name} width="600" height="600" loading="lazy" style={{ width: "100%", height: "auto", objectFit: "contain" }} />}
-        <h2>{product.name}</h2><p>Ordering opens when the collection launches.</p>
-      </article>)}
+      {catalog.products.map(product => <RetroShirtCard product={product} key={product.id} />)}
     </section> : <section className="section intro-grid">
       <div><p className="eyebrow">{catalog.ready ? "Coming Soon" : "Shop Update"}</p>
         <h2>{catalog.ready ? "The first collection is on the workbench." : "The collection is taking shape."}</h2>
