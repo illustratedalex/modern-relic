@@ -1,7 +1,13 @@
 import {writeFile,mkdir} from 'node:fs/promises';
 const token=process.env.PRINTFUL_ACCESS_TOKEN?.trim();if(!token)throw new Error('Missing Printful access');
 const storeId=18894996;
-async function api(path,method='GET',body){const r=await fetch('https://api.printful.com'+path,{method,headers:{Authorization:'Bearer '+token,'X-PF-Store-Id':String(storeId),'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,redirect:'error',signal:AbortSignal.timeout(20000)});if(!r.ok)throw new Error('Printful '+r.status+' at '+path);return await r.json();}
+async function api(path,method='GET',body){
+for(let attempt=0;attempt<4;attempt++){
+await new Promise(r=>setTimeout(r,method==='PUT'?7000:1500));
+const r=await fetch('https://api.printful.com'+path,{method,headers:{Authorization:'Bearer '+token,'X-PF-Store-Id':String(storeId),'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,redirect:'error',signal:AbortSignal.timeout(20000)});
+if(r.status===429){await new Promise(ok=>setTimeout(ok,Math.max(30000,Math.min(60000,Number(r.headers.get('retry-after')??30)*1000))));continue;}
+if(!r.ok)throw new Error('Printful '+r.status+' at '+path);return await r.json();
+}throw new Error('Printful rate limit persists');}
 const stores=(await api('/v2/stores')).data;
 if(stores.filter(s=>s.id===storeId&&s.name==='Modern Relic').length!==1)throw new Error('Store mismatch');
 const cat=(await api('/products/71')).result;
