@@ -4,9 +4,9 @@ import { getModernRelicContentOrThrow, modernRelicMetadata, splitParagraphs } fr
 import { ModernRelicShell } from "@/components/modern-relic/ModernRelicShell";
 
 export const metadata: Metadata = modernRelicMetadata(
-  "About Modern Relic | Artist, Maker & Creative Workshop",
-  "Learn about Modern Relic, a creative workshop by artist and maker Alex Lawrence blending old-school craftsmanship with modern technology.",
-  "/about.html",
+  "About Modern Relic | Retro Goods & Original Artwork",
+  "Meet Modern Relic, the retro lifestyle brand by artist Alex Lawrence, creating original clothing, mugs, prints, accessories, and gifts.",
+  "/about",
 );
 
 export default function ModernRelicAboutPage() {
@@ -40,15 +40,8 @@ export default function ModernRelicAboutPage() {
 
           <h3>What We Do</h3>
           <ul className="two-col-list">
-            <li>Design</li>
-            <li>Branding</li>
-            <li>Stickers &amp; Labels</li>
-            <li>Laser Engraving</li>
-            <li>Resin Printing</li>
-            <li>Custom Products</li>
-            <li>Apparel Graphics</li>
-            <li>Creative Content</li>
-            <li>One-of-a-Kind Creations</li>
+            <li>Retro Clothing</li><li>Mugs &amp; Drinkware</li><li>Art Prints</li>
+            <li>Everyday Gifts</li><li>Accessories</li><li>Original Artwork</li>
           </ul>
 
           <h3>Our Mission</h3>

@@ -15,11 +15,11 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   metadataBase: new URL("https://modernrelic.com"),
   title: {
-    default: "Modern Relic | Old Soul. Modern Tools.",
+    default: "Modern Relic | Retro Clothing, Mugs & Gifts",
     template: "%s | Modern Relic",
   },
   description:
-    "Modern Relic creates custom designs, printed goods, workshop projects, and one-of-a-kind fabricated pieces.",
+    "Original retro clothing, mugs, prints, accessories, and gifts with an old-school spirit.",
 };
 
 export default function RootLayout({

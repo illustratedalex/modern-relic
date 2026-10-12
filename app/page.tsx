@@ -16,7 +16,7 @@ export default function ModernRelicPage() {
     "@type": "Organization",
     name: "Modern Relic",
     url: "https://modernrelic.com",
-    logo: "https://modernrelic.com/assets/modern-relic-logo.png",
+    logo: "https://www.modernrelic.com/images/modern-relic/modern-relic-logo.png",
     sameAs: content.socialLinks.map((link) => link.url),
     founder: { "@type": "Person", name: "Alex Lawrence" },
     description: content.seoDescription,

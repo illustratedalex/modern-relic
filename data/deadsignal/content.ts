@@ -35,17 +35,17 @@ export type SiteContentRecord = {
 
 const modernRelicContent: SiteContentRecord = {
   slug: "modern-relic",
-  seoTitle: "Modern Relic | Old Soul. Modern Tools.",
+  seoTitle: "Modern Relic | Retro Clothing, Mugs & Gifts",
   seoDescription:
-    "Modern Relic is a creative workshop by Alex Lawrence focused on design, stickers, branding, laser engraving, resin printing, and one-of-a-kind maker projects.",
+    "Modern Relic brings an old-school spirit to retro clothing, mugs, prints, accessories, and gifts. Original designs for analog souls of every generation.",
   heroTitle: "Modern Relic",
-  heroSubtitle: "Design. Print. Build. Create.",
+  heroSubtitle: "Retro spirit. Everyday goods.",
   aboutText:
-    "Modern Relic is where old-school craftsmanship meets modern tools.\n\nFrom brand design to physical products, every project starts with a strong idea and gets refined through making.",
+    "Modern Relic brings the spirit of the analog years into everyday life.\n\nVintage-inspired artwork, a little attitude, and familiar memories meet clothing, mugs, prints, and gifts for people who grew up with them—and people discovering them now.",
   servicesText:
-    "Follow the builds, experiments, and behind-the-scenes process from sketchbook ideas to finished pieces.",
-  ctaButtonText: "Subscribe on YouTube",
-  ctaButtonUrl: "https://youtube.com/@modernrelicshow",
+    "For the generation that remembers rewinding tapes, and anyone who wishes they had been there. Our first collections take their cues from analog life, well-earned character, and after-hours creativity.",
+  ctaButtonText: "Explore The Shop",
+  ctaButtonUrl: "/shop",
   socialLinks: [
     { platform: "YouTube", url: "https://youtube.com/@modernrelicshow" },
     { platform: "Instagram", url: "https://www.instagram.com/modernrelicshow" },
@@ -54,27 +54,27 @@ const modernRelicContent: SiteContentRecord = {
   ],
   modernRelicPages: {
     aboutStoryText:
-      "Modern Relic started as a personal workshop and evolved into a brand focused on meaningful creative work.\n\nThe goal is simple: build things worth keeping and share the process honestly.",
+      "Created by artist Alex Lawrence, Modern Relic brings decades of creative experience to vintage-inspired everyday goods.\n\nThe brand celebrates the music, objects, humor, and character of the analog years, with original designs for every generation.",
     aboutPhilosophyText:
-      "Use modern tools with timeless standards. Build with intention, keep quality high, and keep learning through every project.",
+      "Old-school character, original artwork, and modern ways to bring it to life. Nostalgia belongs on the things we use every day.",
     aboutMissionText:
-      "Create work that feels handmade, useful, and memorable while helping people bring ideas to life.",
+      "Create clothing, mugs, prints, accessories, and gifts with personality—things that bring back a memory or start a conversation.",
     contactMakerText:
-      "I help clients and collaborators with design, product ideas, and production-ready creative work.\n\nIf you have an idea, send it over and let us build it together.",
+      "Modern Relic is my home for original retro-inspired designs and everyday goods.\n\nFor product questions, design ideas, or collaborations, get in touch.",
     contactFormIntro:
-      "Tell me what you are trying to make, your timeline, and any references. I will follow up with next steps.",
-    contactFollowText: "Follow the latest projects, builds, and experiments across social channels.",
-    contactShopText: "Explore stickers, prints, and workshop-made goods in the Modern Relic shop.",
-    nowLastUpdatedLabel: "July 2026",
+      "Have a product question or an idea for Modern Relic? Send a message with the details.",
+    contactFollowText: "Follow Modern Relic for new artwork, collection announcements, and product updates.",
+    contactShopText: "Explore retro clothing, mugs, prints, accessories, and gifts in the Modern Relic shop.",
+    nowLastUpdatedLabel: "October 2026",
     nowIntroText:
-      "Currently focused on growing Modern Relic and shipping the first wave of products.\n\nI am balancing client work, product development, and content production from the workshop.",
-    nowFollowText: "New builds and process updates are shared regularly on YouTube and social media.",
+      "Modern Relic is becoming a home for retro-inspired everyday goods.\n\nThe first collections are in development. Products will appear in the shop as they are ready for launch.",
+    nowFollowText: "Collection announcements and product updates will be shared through the shop and our social channels.",
     projectsIntroText:
-      "A mix of custom client work, in-house product development, and ongoing maker experiments.",
+      "Three directions for our first collections. Artwork and products are in development; these are a look at what is coming.",
     workshopIntroText:
-      "The workshop is where ideas become prototypes, and prototypes become real products.\n\nEvery project is part design process, part fabrication, and part problem-solving.",
+      "The workshop is where original Modern Relic artwork takes shape.\n\nVintage lettering, analog objects, and a little irreverent humor inspire designs for clothing, mugs, prints, and more.",
     workshopLatestText:
-      "Watch recent episodes and behind-the-scenes clips from The Modern Relic Show.",
+      "The first designs are in development. Explore the planned collections for a look at their inspiration.",
   },
 };
 

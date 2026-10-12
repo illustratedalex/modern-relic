@@ -6,6 +6,41 @@ type ApiResponse = {
   paging?: { total?: number };
 };
 
+export type PrintfulProduct = { id: number; name: string; image: string | null };
+export type PrintfulCatalog = { ready: boolean; products: PrintfulProduct[] };
+
+// Only public product fields leave the server. Checkout is a separate integration.
+export async function getPrintfulCatalog(): Promise<PrintfulCatalog> {
+  const connection = await checkPrintfulConnection();
+  if (!connection.connected) return { ready: false, products: [] };
+  if (connection.productCount === 0) return { ready: true, products: [] };
+  try {
+    const response = await fetch("https://api.printful.com/store/products?limit=100", {
+      headers: {
+        Authorization: `Bearer ${process.env.PRINTFUL_ACCESS_TOKEN!.trim()}`,
+        "X-PF-Store-Id": String(connection.store.id),
+      },
+      cache: "no-store", redirect: "error", signal: AbortSignal.timeout(10000),
+    });
+    if (!response.ok) return { ready: false, products: [] };
+    const body = await response.json();
+    if (!Array.isArray(body.result)) return { ready: false, products: [] };
+    const products: PrintfulProduct[] = [];
+    for (const product of body.result) {
+      if (!Number.isSafeInteger(product.id) || typeof product.name !== "string") continue;
+      let image: string | null = null;
+      try {
+        const url = new URL(product.thumbnail_url);
+        if (url.protocol === "https:") image = url.href;
+      } catch { /* Missing preview image is fine. */ }
+      products.push({ id: product.id, name: product.name, image });
+    }
+    return { ready: true, products };
+  } catch {
+    return { ready: false, products: [] };
+  }
+}
+
 export type PrintfulConnection =
   | { connected: true; store: Store; productCount: number }
   | { connected: false; reason: string; apiStatus?: number };

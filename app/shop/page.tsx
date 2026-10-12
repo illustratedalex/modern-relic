@@ -1,66 +1,45 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { getModernRelicContentOrThrow, modernRelicMetadata } from "@/app/_content";
 import { ModernRelicShell } from "@/components/modern-relic/ModernRelicShell";
-import { customTumblerProduct } from "@/data/deadsignal/store";
+import { getPrintfulCatalog } from "@/lib/printful";
 
+export const dynamic = "force-dynamic";
+export const maxDuration = 45;
 export const metadata: Metadata = modernRelicMetadata(
-  "Shop | Modern Relic Custom Products",
-  "Explore Modern Relic custom products and start with the Custom Printed 20 oz Tumbler.",
+  "Shop | Modern Relic Retro Clothing, Mugs & Gifts",
+  "Explore Modern Relic retro clothing, mugs, prints, accessories, and gifts. Original designs with an old-school spirit.",
   "/shop",
 );
 
-export default function ModernRelicShopPage() {
+export default async function ModernRelicShopPage() {
   const content = getModernRelicContentOrThrow();
-
-  return (
-    <ModernRelicShell socialLinks={content.socialLinks}>
-      <section className="page-hero">
-        <div>
-          <p className="eyebrow">Shop</p>
-          <h1>Modern Relic Store</h1>
-          <p>Custom products made to order, starting with our first featured tumbler build.</p>
-        </div>
-      </section>
-
-      <section className="section intro-grid">
-        <div>
-          <p className="eyebrow">Featured Product</p>
-          <h2>{customTumblerProduct.title}</h2>
-          <p className="mr-price">Starting at {customTumblerProduct.startingPrice}</p>
-          <p>{customTumblerProduct.shortDescription}</p>
-          <Link className="btn primary" href="/shop/custom-tumbler">
-            Customize This Tumbler
-          </Link>
-        </div>
-
-        <div className="card mr-product-preview" aria-label="Custom tumbler product preview placeholder">
-          <div className="mr-product-preview-inner">
-            <p className="eyebrow">Preview</p>
-            <h3>20 oz Stainless Tumbler</h3>
-            <p>Placeholder image area. Final product photography will be added in the next step.</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="section cards-section">
-        <div className="card">
-          <h3>Custom Printing</h3>
-          <p>Sublimation and UV print options for personal, business, and event-ready designs.</p>
-        </div>
-        <div className="card">
-          <h3>Proof First</h3>
-          <p>Every order includes a proof approval step before production starts.</p>
-        </div>
-        <div className="card">
-          <h3>Bulk Friendly</h3>
-          <p>Need multiples for teams, gifts, or merch drops? Bulk pricing support is available.</p>
-        </div>
-        <div className="card">
-          <h3>Secure Checkout</h3>
-          <p>Checkout is handled through secure payment links after customization details are confirmed.</p>
-        </div>
-      </section>
-    </ModernRelicShell>
-  );
+  const catalog = await getPrintfulCatalog();
+  return <ModernRelicShell socialLinks={content.socialLinks}>
+    <section className="page-hero shop-compact-hero"><div>
+      <p className="eyebrow">The Modern Relic Shop</p>
+      <h1>Everyday goods. Old-school character.</h1>
+      <p>Retro clothing, mugs, prints, accessories, and gifts for analog souls of every generation.</p>
+    </div></section>
+    {catalog.products.length > 0 ? <section className="section cards-section">
+      {catalog.products.map(product => <article className="card" key={product.id}>
+        {product.image && <img src={product.image} alt={product.name} width="600" height="600" loading="lazy" style={{ width: "100%", height: "auto", objectFit: "contain" }} />}
+        <h2>{product.name}</h2><p>Ordering opens when the collection launches.</p>
+      </article>)}
+    </section> : <section className="section intro-grid">
+      <div><p className="eyebrow">{catalog.ready ? "Coming Soon" : "Shop Update"}</p>
+        <h2>{catalog.ready ? "The first collection is on the workbench." : "The collection is taking shape."}</h2>
+      </div>
+      <div className="copy"><p>{catalog.ready
+        ? "Our first products are in development. Explore the collection ideas while we prepare the artwork and get everything ready for launch."
+        : "The catalog is temporarily unavailable. Please check back, or contact us with a product question."}</p>
+        <a className="btn primary" href="/projects">Explore Collections</a>
+      </div>
+    </section>}
+    <section className="section cards-section shop-info-cards">
+      <div className="card"><h3>Clothing</h3><p>Original retro artwork for shirts, sweatshirts, and everyday wear.</p></div>
+      <div className="card"><h3>Mugs &amp; Drinkware</h3><p>A little analog character for your daily coffee ritual.</p></div>
+      <div className="card"><h3>Prints &amp; Decor</h3><p>Vintage-inspired artwork for your home, studio, or favorite corner.</p></div>
+      <div className="card"><h3>Gifts &amp; Accessories</h3><p>Everyday objects with personality, for yourself or another old soul.</p></div>
+    </section>
+  </ModernRelicShell>;
 }

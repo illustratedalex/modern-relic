@@ -3,9 +3,9 @@ import { getModernRelicContentOrThrow, modernRelicMetadata, splitParagraphs } fr
 import { ModernRelicShell } from "@/components/modern-relic/ModernRelicShell";
 
 export const metadata: Metadata = modernRelicMetadata(
-  "Now | Modern Relic Current Projects & Workshop Updates",
-  "See what Modern Relic is working on now, including maker projects, sticker packs, laser engraving, resin printing, and The Modern Relic Show.",
-  "/now.html",
+  "Now | Modern Relic Collection & Shop Updates",
+  "Follow the development of Modern Relic retro collections, clothing, mugs, prints, and gifts.",
+  "/now",
 );
 
 export default function ModernRelicNowPage() {
@@ -18,7 +18,7 @@ export default function ModernRelicNowPage() {
         <div>
           <p className="eyebrow">Now</p>
           <h1>What I&apos;m Working On.</h1>
-          <p>A current snapshot of the projects, tools, experiments, and ideas moving through the Modern Relic workshop.</p>
+          <p>A snapshot of the collections and everyday goods taking shape at Modern Relic.</p>
         </div>
       </section>
 
@@ -37,19 +37,19 @@ export default function ModernRelicNowPage() {
       <section className="section cards-section">
         <div className="card">
           <h3>Current Focus</h3>
-          <p>Building Modern Relic, growing The Modern Relic Show, and developing the first wave of products.</p>
+          <p>Developing original retro artwork and preparing the first Modern Relic collections.</p>
         </div>
         <div className="card">
-          <h3>Sticker Pack Vol. 1</h3>
-          <p>Creating the first Modern Relic sticker collection using the brand marks, slogans, and workshop-inspired artwork.</p>
+          <h3>Analog Originals</h3>
+          <p>Exploring analog objects, vintage lettering, and familiar memories across clothing and printed goods.</p>
         </div>
         <div className="card">
-          <h3>Maker Experiments</h3>
-          <p>Testing resin printing, laser engraving, product prototypes, custom labels, and creative fabrication ideas.</p>
+          <h3>Still Running</h3>
+          <p>Developing humor and artwork about experience, character, and staying a little rebellious.</p>
         </div>
         <div className="card">
-          <h3>Content</h3>
-          <p>Documenting the process through YouTube, Instagram, TikTok, and behind-the-scenes project updates.</p>
+          <h3>After Hours</h3>
+          <p>Working on bold vintage tattoo, garage, and rock-club influences for everyday goods.</p>
         </div>
       </section>
 
@@ -57,13 +57,13 @@ export default function ModernRelicNowPage() {
         <article className="project-card">
           <span>01</span>
           <h2>Current Goal</h2>
-          <p>Create meaningful products, document the process, and build a creative workshop brand that blends traditional craftsmanship with modern technology.</p>
+          <p>Bring original retro designs to clothing, mugs, prints, accessories, and gifts while keeping the old-school Modern Relic identity.</p>
         </article>
 
         <article className="project-card">
           <span>02</span>
-          <h2>Current Tools</h2>
-          <p>EufyMake printer, resin printer, laser engraver, Adobe Creative Suite, sketchbooks, hand tools, coffee, and whatever machine ends up on the bench next.</p>
+          <h2>Current Stage</h2>
+          <p>Artwork and product preparation are underway. The first items will appear in the shop as they become ready for launch.</p>
         </article>
 
         <article className="project-card">
@@ -76,11 +76,11 @@ export default function ModernRelicNowPage() {
       <section className="section split">
         <div>
           <p className="eyebrow">Follow Along</p>
-          <h2>The process is the project.</h2>
+          <h2>See what comes next.</h2>
           <p>{pageContent?.nowFollowText}</p>
         </div>
-        <a className="big-link" href="https://youtube.com/@modernrelicshow" target="_blank" rel="noopener noreferrer">
-          Watch The Show →
+        <a className="big-link" href="/shop">
+          Visit The Shop →
         </a>
       </section>
     </ModernRelicShell>
