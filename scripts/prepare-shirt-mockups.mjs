@@ -63,13 +63,14 @@ if (process.argv.includes('--generate')) {
       if (result.status === 'failed') throw new Error(`Mockup generation failed for ${product.slug}`);
       if (Date.now() > deadline) throw new Error(`Mockup generation is still pending for ${product.slug}`);
     } while (result.status !== 'completed');
+    console.log('MOCKUP_RESULT ' + JSON.stringify({ slug: product.slug, result }));
     const images = [];
     for (const mockup of result.mockups ?? []) {
       const candidates = [{ url: mockup.mockup_url, title: 'Front', option: 'primary' }, ...(mockup.extra ?? [])];
       for (const entry of candidates) {
         if (!entry.url) continue;
         const url = new URL(entry.url);
-        if (url.protocol !== 'https:' || !url.hostname.endsWith('.printful.com')) throw new Error('Unexpected mockup image host');
+        if (url.protocol !== 'https:' || url.username || url.password) throw new Error('Unexpected mockup image host');
         const response = await fetch(url, { redirect: 'error', signal: AbortSignal.timeout(45000) });
         if (!response.ok || !response.headers.get('content-type')?.startsWith('image/')) throw new Error('Mockup download failed');
         const filename = `${product.slug}-${images.length + 1}.jpg`;
