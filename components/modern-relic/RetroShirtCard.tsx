@@ -3,7 +3,7 @@ import { useState } from "react";
 import type { PrintfulProduct } from "@/lib/printful";
 import { retroShirts } from "@/data/deadsignal/retro-products";
 
-export function RetroShirtCard({ product, testCheckout = false }: { product: PrintfulProduct; testCheckout?: boolean }) {
+export function RetroShirtCard({ product, testCheckout = false, liveCheckout = false }: { product: PrintfulProduct; testCheckout?: boolean; liveCheckout?: boolean }) {
   const [variantId, setVariantId] = useState(product.variants[0]?.id ?? 0);
   const variant = product.variants.find(v => v.id === variantId);
   const design = retroShirts.find(d => d.externalId === product.externalId);
@@ -21,6 +21,6 @@ export function RetroShirtCard({ product, testCheckout = false }: { product: Pri
       <p className="shop-feature-price">{variant ? new Intl.NumberFormat("en-US", {style:"currency",currency:"USD"}).format(variant.priceCents / 100) : ""}</p>
       <p>Plus destination shipping and applicable tax. Final total confirmed before payment.</p>
     </> : <p>Sizes are being prepared.</p>}
-    {testCheckout && variant ? <a className="btn primary" href={`/shop/checkout?variant=${variant.id}`}>Test checkout</a> : <p><strong>Checkout coming soon.</strong></p>}
+    {(testCheckout || liveCheckout) && variant ? <a className="btn primary" href={`/shop/checkout?variant=${variant.id}`}>{liveCheckout?"Buy now":"Test checkout"}</a> : <p><strong>Checkout coming soon.</strong></p>}
   </article>;
 }

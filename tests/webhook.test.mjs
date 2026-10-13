@@ -7,7 +7,7 @@ import ts from 'typescript';
 import Stripe from 'stripe';
 const temp=mkdtempSync(join(process.cwd(),'tests','webhook-compiled-'));
 after(()=>rmSync(temp,{recursive:true,force:true}));
-for(const path of ['pricing','printful','checkout/quote','checkout/fulfillment']){
+for(const path of ['pricing','printful','checkout/print-item','checkout/quote','checkout/fulfillment']){
  let output=ts.transpileModule(readFileSync(`lib/${path}.ts`,'utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
  output=output.replace(/from "(\.\.?\/[^".]+)"/g,'from "$1.mjs"');mkdirSync(join(temp,path,'..'),{recursive:true});writeFileSync(join(temp,`${path}.mjs`),output);
 }

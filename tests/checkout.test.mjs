@@ -6,7 +6,7 @@ import {pathToFileURL} from 'node:url';
 import ts from 'typescript';
 const temp=mkdtempSync(join(process.cwd(),'tests','checkout-compiled-'));
 after(()=>rmSync(temp,{recursive:true,force:true}));
-for(const path of ['pricing','printful','checkout/quote','checkout/fulfillment','checkout/sandbox']){
+for(const path of ['pricing','printful','checkout/print-item','checkout/quote','checkout/fulfillment','checkout/sandbox']){
   const source=readFileSync(`lib/${path}.ts`,'utf8');
   let output=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
   output=output.replace(/from "(\.\.?\/[^".]+)"/g,'from "$1.mjs"');

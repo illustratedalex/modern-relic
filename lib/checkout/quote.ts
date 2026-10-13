@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { calculateOrderTotal } from "../pricing";
 import { checkPrintfulConnection } from "../printful";
+import { livePrintItem } from "./print-item";
 export const recipientSchema = z.object({
   name: z.string().trim().min(2).max(100),
   address1: z.string().trim().min(3).max(100),
@@ -34,7 +35,7 @@ export function moneyCents(value: unknown) {
   if (!Number.isFinite(n) || n < 0 || n > 100000 || Math.abs(n * 100 - Math.round(n * 100)) > 0.000001) throw new Error("Invalid amount");
   return Math.round(n * 100);
 }
-export async function buildQuote(input: QuoteInput) {
+export async function buildQuote(input: QuoteInput, live = false) {
   if (!VERIFIED_VARIANTS.has(input.variantId)) throw new Error("Variant unavailable");
   const connection = await checkPrintfulConnection();
   if (!connection.connected || connection.store.id !== 18894996) throw new Error("Store unavailable");
@@ -44,7 +45,7 @@ export async function buildQuote(input: QuoteInput) {
     || !variant.files?.some((f: {type:string;status:string}) => ["default","front"].includes(f.type) && f.status === "ok")
     || !variant.files?.some((f: {type:string;status:string}) => f.type === "label_inside" && f.status === "ok")) throw new Error("Variant unavailable");
   const estimate = await printfulApi("/orders/estimate-costs", "POST", {
-    shipping: "STANDARD", recipient: input.recipient, items: [{ sync_variant_id: input.variantId, quantity: input.quantity }],
+    shipping: "STANDARD", recipient: input.recipient, items: [live ? livePrintItem(input.variantId, input.quantity, variant.files) : { sync_variant_id: input.variantId, quantity: input.quantity }],
   });
   const costs = estimate.costs;
   if (costs?.currency !== "USD") throw new Error("Unsupported quote currency");
