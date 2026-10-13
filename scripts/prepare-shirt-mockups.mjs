@@ -18,6 +18,12 @@ async function api(path, data) {
     ...(data ? { body: JSON.stringify(data) } : {}),
     redirect: 'error', signal: AbortSignal.timeout(45000),
   });
+  if (response.status === 429) {
+    const seconds = Math.max(60, Number(response.headers.get('retry-after')) || 60);
+    console.log('Printful rate limit; waiting before retry');
+    await new Promise(resolve => setTimeout(resolve, seconds * 1000));
+    return api(path, data);
+  }
   if (!response.ok) throw new Error(`Printful ${path.split('?')[0]} returned ${response.status}`);
   const body = await response.json();
   return body.result ?? body.data;
@@ -49,7 +55,8 @@ if (process.argv.includes('--generate')) {
   const outputDir = 'public/images/modern-relic/products/mockups';
   await mkdir(outputDir, { recursive: true });
   const manifest = [];
-  for (const product of details) {
+  const only = process.argv.find(arg => arg.startsWith('--only='))?.slice(7);
+  for (const product of details.filter(p => !only || p.slug === only)) {
     const task = await api('/mockup-generator/create-task/71', {
       variant_ids: [product.catalogVariantId], format: 'jpg', width: 1600,
       option_groups: selected, options: ['Front'],
