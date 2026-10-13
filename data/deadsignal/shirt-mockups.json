@@ -1,0 +1,89 @@
+[
+  {
+    "slug": "little-rust",
+    "externalId": "mr-little-rust-tee-v1",
+    "catalogProductId": 71,
+    "catalogVariantId": 4016,
+    "color": "Black",
+    "generatedAt": "2026-10-13",
+    "artwork": "https://raw.githubusercontent.com/illustratedalex/modern-relic/7189bbbacc34688bd6ad7b0a491565193f414395/public/images/modern-relic/products/little-rust.png",
+    "position": {
+      "area_width": 1800,
+      "area_height": 2400,
+      "width": 1050,
+      "height": 1400,
+      "top": 300,
+      "left": 375
+    },
+    "images": [
+      {
+        "view": "model",
+        "path": "/images/modern-relic/products/mockups/little-rust-1.jpg",
+        "generatorMockupId": 1174
+      },
+      {
+        "view": "shirt",
+        "path": "/images/modern-relic/products/mockups/little-rust-2.jpg",
+        "generatorMockupId": 7917
+      }
+    ]
+  },
+  {
+    "slug": "original-parts",
+    "externalId": "mr-original-parts-tee-v1",
+    "catalogProductId": 71,
+    "catalogVariantId": 4016,
+    "color": "Black",
+    "generatedAt": "2026-10-13",
+    "artwork": "https://raw.githubusercontent.com/illustratedalex/modern-relic/7189bbbacc34688bd6ad7b0a491565193f414395/public/images/modern-relic/products/original-parts.png",
+    "position": {
+      "area_width": 1800,
+      "area_height": 2400,
+      "width": 1050,
+      "height": 1400,
+      "top": 300,
+      "left": 375
+    },
+    "images": [
+      {
+        "view": "model",
+        "path": "/images/modern-relic/products/mockups/original-parts-1.jpg",
+        "generatorMockupId": 1174
+      },
+      {
+        "view": "shirt",
+        "path": "/images/modern-relic/products/mockups/original-parts-2.jpg",
+        "generatorMockupId": 7917
+      }
+    ]
+  },
+  {
+    "slug": "raised-on-static",
+    "externalId": "mr-raised-on-static-tee-v1",
+    "catalogProductId": 71,
+    "catalogVariantId": 4016,
+    "color": "Black",
+    "generatedAt": "2026-10-13",
+    "artwork": "https://raw.githubusercontent.com/illustratedalex/modern-relic/7189bbbacc34688bd6ad7b0a491565193f414395/public/images/modern-relic/products/raised-on-static.png",
+    "position": {
+      "area_width": 1800,
+      "area_height": 2400,
+      "width": 1050,
+      "height": 1400,
+      "top": 300,
+      "left": 375
+    },
+    "images": [
+      {
+        "view": "model",
+        "path": "/images/modern-relic/products/mockups/raised-on-static-1.jpg",
+        "generatorMockupId": 1174
+      },
+      {
+        "view": "shirt",
+        "path": "/images/modern-relic/products/mockups/raised-on-static-2.jpg",
+        "generatorMockupId": 7917
+      }
+    ]
+  }
+]

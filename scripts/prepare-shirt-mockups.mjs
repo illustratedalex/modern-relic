@@ -11,18 +11,18 @@ const expected = new Map([
 const token = process.env.PRINTFUL_ACCESS_TOKEN?.trim();
 if (!token) throw new Error('Existing Printful access is unavailable');
 let storeId;
-async function api(path, data) {
+async function api(path, data, attempt = 0) {
   const response = await fetch(`https://api.printful.com${path}`, {
     method: data ? 'POST' : 'GET',
     headers: { Authorization: `Bearer ${token}`, ...(storeId ? { 'X-PF-Store-Id': String(storeId) } : {}), ...(data ? { 'Content-Type': 'application/json' } : {}) },
     ...(data ? { body: JSON.stringify(data) } : {}),
     redirect: 'error', signal: AbortSignal.timeout(45000),
   });
-  if (response.status === 429) {
+  if (response.status === 429 && attempt < 5) {
     const seconds = Math.max(60, Number(response.headers.get('retry-after')) || 60);
     console.log('Printful rate limit; waiting before retry');
     await new Promise(resolve => setTimeout(resolve, seconds * 1000));
-    return api(path, data);
+    return api(path, data, attempt + 1);
   }
   if (!response.ok) throw new Error(`Printful ${path.split('?')[0]} returned ${response.status}`);
   const body = await response.json();

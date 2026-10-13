@@ -124,3 +124,13 @@ body {
 .checkout-form input, .checkout-form select { width: 100%; padding: 0.75rem; color: #e8e1d4; background: #181512; border: 1px solid #b08d57; border-radius: 3px; }
 .checkout-form button { margin-top: 1rem; }
 .checkout-form button:disabled { opacity: 0.6; cursor: wait; }
+
+.shirt-gallery { margin: 0 0 1.25rem; }
+.shirt-gallery-image { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; background: #fff; border-radius: 3px; }
+.shirt-gallery-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.shirt-gallery-controls button { display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 4px 9px 4px 4px; border: 1px solid rgba(232,225,212,.25); border-radius: 3px; background: #181512; color: #e8e1d4; font: inherit; font-size: .8rem; cursor: pointer; }
+.shirt-gallery-controls button[aria-pressed="true"] { border-color: #b08d57; background: #30271d; }
+.shirt-gallery-controls button:hover { border-color: #b08d57; }
+.shirt-gallery-controls button:focus-visible { outline: 2px solid #e8e1d4; outline-offset: 3px; }
+.shirt-gallery-controls img { display: block; width: 44px; height: 44px; object-fit: contain; border-radius: 2px; }
+.mr-site .shirt-gallery-note { margin: 9px 0 0; font-size: .75rem; }
