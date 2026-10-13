@@ -4,6 +4,7 @@ import { mkdtempSync, readFileSync, writeFileSync, rmSync, mkdirSync } from 'nod
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import ts from 'typescript';
+import Stripe from 'stripe';
 const temp=mkdtempSync(join(process.cwd(),'tests','live-compiled-'));
 after(()=>rmSync(temp,{recursive:true,force:true}));
 for(const path of ['pricing','printful','checkout/print-item','checkout/quote','checkout/live','checkout/live-fulfillment']) {
@@ -67,4 +68,20 @@ test('refunded or fee-unavailable payments never reach Printful',async()=>{
   const s={...session,payment_intent:{status:'succeeded',latest_charge:{...session.payment_intent.latest_charge,...override}}};
   await assert.rejects(fulfillLiveOrder({checkout:{sessions:{retrieve:async()=>s}}},session.id));
  }assert.equal(calls,0);}finally{global.fetch=priorFetch;}
+});
+
+let receiver=ts.transpileModule(readFileSync('app/api/stripe/live-webhook/route.ts','utf8'),{compilerOptions:{module:ts.ModuleKind.ESNext,target:ts.ScriptTarget.ES2022}}).outputText;
+receiver=receiver.replace('from "@/lib/checkout/live"','from "./checkout/live.mjs"').replace('from "@/lib/checkout/live-fulfillment"','from "./checkout/live-fulfillment.mjs"').replace('from "next/server"','from "next/server.js"');
+writeFileSync(join(temp,'live-receiver.mjs'),receiver);
+const {POST:liveWebhook}=await import(pathToFileURL(join(temp,'live-receiver.mjs')));
+test('live receiver validates signature and blocks fulfillment while launch is disabled',async()=>{
+ const priorSecret=process.env.STRIPE_LIVE_WEBHOOK_SECRET,priorGate=process.env.MODERN_RELIC_LIVE_CHECKOUT,priorFetch=global.fetch;
+ process.env.STRIPE_LIVE_WEBHOOK_SECRET='whsec_unit_only';delete process.env.MODERN_RELIC_LIVE_CHECKOUT;let fetched=0;global.fetch=async()=>{fetched++;throw new Error('Unexpected upstream call');};
+ try{
+ const body=JSON.stringify({id:'evt_unit_only',livemode:true,type:'checkout.session.completed',data:{object:session}});
+ const make=(signature)=>new Request('https://example.com',{method:'POST',body,headers:{'stripe-signature':signature}});
+ assert.equal((await liveWebhook(make('t=1,v1=invalid'))).status,400);
+ const signature=Stripe.webhooks.generateTestHeaderString({payload:body,secret:process.env.STRIPE_LIVE_WEBHOOK_SECRET});
+ assert.equal((await liveWebhook(make(signature))).status,503);assert.equal(fetched,0);
+ }finally{global.fetch=priorFetch;if(priorSecret===undefined)delete process.env.STRIPE_LIVE_WEBHOOK_SECRET;else process.env.STRIPE_LIVE_WEBHOOK_SECRET=priorSecret;if(priorGate===undefined)delete process.env.MODERN_RELIC_LIVE_CHECKOUT;else process.env.MODERN_RELIC_LIVE_CHECKOUT=priorGate;}
 });
