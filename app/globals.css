@@ -118,3 +118,9 @@ body {
     grid-template-columns: 1fr;
   }
 }
+.checkout-form { max-width: 740px; margin-inline: auto; }
+.checkout-form fieldset { border: 0; padding: 0; margin: 0; }
+.checkout-form label { display: block; margin: 1rem 0 0.4rem; }
+.checkout-form input, .checkout-form select { width: 100%; padding: 0.75rem; color: #e8e1d4; background: #181512; border: 1px solid #b08d57; border-radius: 3px; }
+.checkout-form button { margin-top: 1rem; }
+.checkout-form button:disabled { opacity: 0.6; cursor: wait; }

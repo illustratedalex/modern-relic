@@ -24,7 +24,7 @@ export default async function ModernRelicShopPage() {
       <p>Retro clothing, mugs, prints, accessories, and gifts for analog souls of every generation.</p>
     </div></section>
     {catalog.products.length > 0 ? <section className="section cards-section">
-      {catalog.products.map(product => <RetroShirtCard product={product} key={product.id} />)}
+      {catalog.products.map(product => <RetroShirtCard product={product} key={product.id} testCheckout={process.env.VERCEL_ENV === "preview"} />)}
     </section> : <section className="section intro-grid">
       <div><p className="eyebrow">{catalog.ready ? "Coming Soon" : "Shop Update"}</p>
         <h2>{catalog.ready ? "The first collection is on the workbench." : "The collection is taking shape."}</h2>
