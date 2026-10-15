@@ -13,7 +13,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://modernrelic.com"),
+  metadataBase: new URL("https://www.modernrelic.com"),
   title: {
     default: "Modern Relic | Retro Clothing, Mugs & Gifts",
     template: "%s | Modern Relic",

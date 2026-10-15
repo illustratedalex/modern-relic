@@ -11,7 +11,7 @@ export function getModernRelicContentOrThrow() {
 }
 
 export function modernRelicMetadata(title: string, description: string, canonicalPath: string): Metadata {
-  const canonicalUrl = `https://modernrelic.com${canonicalPath}`;
+  const canonicalUrl = new URL(canonicalPath, "https://www.modernrelic.com").toString();
 
   return {
     title: { absolute: title },
